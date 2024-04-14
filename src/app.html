@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<title>TurboBuilder - Make extensions with blocks</title>
-    	<meta name="description" content="Create TurboWarp extensions using Scratch-like block coding." />
-    	<meta name="keywords" content="turbowarp, extensions, blocks" />
-    	<meta name="author" content="JeremyGamer13" />
+		<title>EaglerForge Builder - Make mods with blocks</title>
+    	<meta name="description" content="Create EaglerForge mods using Scratch-like block coding." />
+    	<meta name="keywords" content="EaglerForge, Eaglercraft, blocks, EaglerForge mod, Minecraft" />
+    	<meta name="author" content="Oeildelynx" />
     	<meta name="theme-color" content="#ff4b4b" />
     	<meta name="og:image" content="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
@@ -184,6 +184,10 @@
 				styleElement.innerHTML = styleCode;
 			};
 
+		if (location.hash === "#fullscreen"){
+            history.replaceState(null, null, ' ');
+        }
+        
 			window.themeUpdated_ = () => {
 				updateTheme();
 				for (const event in window.tbevents_) {
@@ -195,5 +199,6 @@
 			updateTheme();
 		</script>
 		<div style="display: contents">%sveltekit.body%</div>
+		<script>document.getElementById('fullscreenButton').innerHTML = `<i class="fa fa-expand"></i>`;</script>
 	</body>
 </html>

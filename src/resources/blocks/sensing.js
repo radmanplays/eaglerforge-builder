@@ -123,6 +123,16 @@ function register() {
     }, (block) => {
         return [`((new Date(new Date(Date.now()).getYear(), 1, 29)).getDate() === 29)`, javascriptGenerator.ORDER_ATOMIC];
     })
+
+    registerBlock(`${categoryPrefix}fps`, {
+        message0: 'current FPS',
+        args0: [],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        return [`ModAPI.getFPS()`, javascriptGenerator.ORDER_ATOMIC];
+    })
 }
 
 Blockly.Extensions.register('single_character_validation', function() {

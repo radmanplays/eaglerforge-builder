@@ -6,6 +6,12 @@
     import NavigationDivider from "$lib/NavigationBar/Divider.svelte";
     import NavigationButton from "$lib/NavigationBar/Button.svelte";
     import StyledButton from "$lib/StyledComponents/ToolboxButton.svelte";
+    import ControlBar from "$lib/ControlBar/ControlBar.svelte";
+    import StartButton from "$lib/ControlBar/StartButton.svelte";
+    import StopButton from "$lib/ControlBar/StopButton.svelte";
+    import FullscreenButton from "$lib/ControlBar/FullscreenButton.svelte";
+    import EaglerCraft from "$lib/EaglerCraft/EaglerCraft.svelte"
+
 
     // Modals
     import ExtensionColorsModal from "$lib/MenuModals/ExtensionColors.svelte";
@@ -63,6 +69,8 @@
     import registerBlocks from "../resources/blocks/blocks.js";
     import registerFunctions from "../resources/blocks/functions.js";
     import registerDebug from "../resources/blocks/debug.js";
+    import registerPlayer from "../resources/blocks/player.js";
+    import registerDisplay from "../resources/blocks/display.js";
     
     registerCore();
     registerControl();
@@ -77,6 +85,8 @@
     registerBlocks();
     registerFunctions();
     registerDebug();
+    registerPlayer()
+    registerDisplay()
 
     const en = {
         rtl: false,
@@ -354,7 +364,33 @@
     };
 
     function discordInvite() {
-        window.open("https://discord.gg/eVQdK8csJc")
+        window.open("https://discord.gg/UhYnFmbAzf")
+    }
+
+    function startInstance() {
+        let mod = encodeURIComponent(btoa(lastGeneratedCode));
+        console.log(lastGeneratedCode);
+        document.getElementById('EaglerCraftInstance').innerHTML = `
+        <iframe src="https://oeildelynx.top7box.com/EaglerForge/?Mod=data:text/plain;charset=utf-8;base64,${mod}#embed" title="EaglerForge loader" width="100%" height="100%" style="border: 0px;"></iframe>`
+    }
+
+    function stopInstance() {
+        document.getElementById('EaglerCraftInstance').innerHTML = '';
+    }
+
+    function switchFullscreen() {
+        if (location.hash === "") {
+            location.hash = "#fullscreen";
+            document.querySelector('.assetsWrapper').classList.add('assetsWrapperFullscreen');
+        } else if (location.hash === "#fullscreen"){
+            history.replaceState(null, null, ' ');
+            document.querySelector('.assetsWrapper').classList.remove('assetsWrapperFullscreen');
+        }
+        setFullscreenIcon()
+    }
+
+    function setFullscreenIcon() {
+        document.getElementById('fullscreenButton').innerHTML = `<i class="${(location.hash === ""?"fa fa-expand":"fa fa-compress")}"></i>`;
     }
 </script>
 
@@ -387,7 +423,7 @@
     <NavigationButton on:click={discordInvite}>Discord</NavigationButton>
     <NavigationDivider />
     <NavigationButton on:click={downloadProject}>Save</NavigationButton>
-    <NavigationButton on:click={loadProject}>Load</NavigationButton>
+    <NavigationButton on:click={loadProject}>Load</NavigationButton><!--
     <NavigationDivider />
     <input
         class="project-name"
@@ -411,50 +447,12 @@
         style="margin-left:4px;margin-right:4px"
         bind:value={projectName}
         on:change={updateGeneratedCode}
-    />
+    />-->
 </NavigationBar>
 <div class="main">
     <div class="row-menus">
         <div class="row-first-submenus">
             <div class="blockMenuButtons">
-                <StyledButton
-                    on:click={() => {
-                        ModalState.extensionColors = true;
-                    }}
-                >
-                    Edit Extension Colors
-                </StyledButton>
-                <div style="margin-left:8px" />
-                <!--<StyledButton
-                    on:click={() => {
-                        CreateBlockModalScript.open();
-                    }}
-                >
-                    Create an Extension Block
-                </StyledButton> wont need this since im changing the system -->
-                <div style="margin-left:8px" />
-                <div class="extensionMenuPreview">
-                    <div style="text-align: center;">
-                        {#if !extensionImageStates.icon.loading && !extensionImageStates.icon.failed && extensionImageStates.icon.image}
-                            <div
-                                class="extensionBubbleIcon"
-                                style={`border: 0; border-radius: 0; background-image: url(${extensionImageStates.icon.image})`}
-                            />
-                        {:else}
-                            <div
-                                class="extensionBubbleIcon"
-                                style={`background: ${extensionMetadata.color1}; border-color: ${extensionMetadata.color2}`}
-                            />
-                        {/if}
-                        <div class="extensionBubbleName">
-                            {#if projectName}
-                                {projectName}
-                            {:else}
-                                Extension
-                            {/if}
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="blocklyWrapper">
                 <BlocklyComponent {config} locale={en} bind:workspace />
@@ -462,66 +460,22 @@
         </div>
         <div class="row-submenus">
             <div class="assetsWrapper">
-                <h1>Assets</h1>
-                <p>
-                    Extra things that will appear under
-                    {#if projectName}
-                        "{projectName}"
-                    {:else}
-                        "Extension"
-                    {/if}
-                    in the block list.
-                    <br />
-                    These things are not required, so you can leave them empty if
-                    you do not need them.
-                </p>
-                <p>
-                    Documentation URL:
-                    <input
-                        type="text"
-                        placeholder="https://..."
-                        bind:value={extensionMetadata.docsURL}
-                        on:change={updateGeneratedCode}
-                    />
-                </p>
-                <p>
-                    Extension Icon:
-                    <input type="file" on:change={extensionIconAdded} />
-                </p>
-                {#if !extensionImageStates.icon.loading && !extensionImageStates.icon.failed && extensionImageStates.icon.image}
-                    <img
-                        alt="Extension Icon"
-                        title="Extension Icon"
-                        class="extensionIcon"
-                        src={extensionImageStates.icon.image}
-                    />
-                {/if}
-                {#if extensionImageStates.icon.image}
-                    {#if extensionImageStates.icon.failed}
-                        <p class="warning">
-                            The extension icon is not an image, this may appear
-                            broken in the category list.
-                        </p>
-                    {/if}
-                    {#if !extensionImageStates.icon.square}
-                        <p class="warning">
-                            The image is not square, this may appear broken in
-                            the category list.
-                        </p>
-                    {/if}
-                {/if}
-                <h3>Extra Icons</h3>
-                <p>
-                    Blocks can use their own icons instead of the Extension
-                    icon.
-                    <br />
-                    Add more images here to use them.
-                </p>
-                <StyledButton>Add Image</StyledButton>
+                <ControlBar>
+                    <StartButton
+                        on:click={startInstance}/>
+                    <StopButton
+                        on:click={stopInstance}/>
+                    <FullscreenButton
+                        on:click={switchFullscreen}>
+                        <i class="fa fa-expand"></i>
+                    </FullscreenButton>
+                </ControlBar>
+                <EaglerCraft>
+                </EaglerCraft>
             </div>
             <div class="row-subsubmenus">
                 <div class="codeActionsWrapper">
-                    <p style="margin-right: 12px"><b>Extension Code</b></p>
+                    <p style="margin-right: 12px"><b>Mod Code</b></p>
                     <StyledButton
                         on:click={() => {
                             // copy code
@@ -744,13 +698,24 @@
         width: 100%;
         height: calc(100% - 48px);
     }
-    .assetsWrapper {
+    .assetsWrapper:not(.assetsWrapperFullscreen) {
         position: relative;
         width: calc(100% - 16px);
         height: calc(50% - 16px);
         padding: 8px;
         overflow: auto;
     }
+
+    :global(.assetsWrapperFullscreen) {
+        position: fixed;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 70;
+        padding: 0px;
+        top: 0px;
+    }
+
     .codeActionsWrapper {
         position: relative;
         width: 100%;
@@ -778,6 +743,7 @@
 
         border: 0;
         padding: 0;
+        padding-left: 8px;
         overflow: auto;
 
         background: #f9f9f9;

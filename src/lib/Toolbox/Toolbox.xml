@@ -1,6 +1,8 @@
 <xml>
     <category name="Events" colour="#FFBF00">
+        <block type="events_modload" />
         <block type="events_interval" />
+        <block type="events_eachTicks" />
         <block type="events_timeout" />
     </category>
     <category name="Control" colour="#FFAB19">
@@ -33,6 +35,8 @@
         <block type="sensing_time" />
         <block type="sensing_year" />
         <block type="sensing_leapyear" />
+        <sep gap="48"></sep>
+        <block type="sensing_fps" />
     </category>
     <category name="Literals" colour="#59C08E">
         <block type="literals_null" />
@@ -104,13 +108,13 @@
         <block type="json_objectvalues" />
     </category>
     <sep></sep>
-    <category name="Blocks" colour="#FF6680">
+    <!--<category name="Blocks" colour="#FF6680">
         <block type="blocks_create" />
         <block type="blocks_input" />
         <sep gap="48"></sep>
         <block type="blocks_get" />
         <block type="blocks_return" />
-    </category>
+    </category>-->
     <category name="Functions" colour="#5531D6">
         <block type="functions_create">
             <statement name="FUNC">
@@ -140,5 +144,16 @@
         <block type="debug_commentstack" />
         <sep gap="48"></sep>
         <block type="debug_catch" />
+    </category>
+    <sep></sep>
+    <category name="Player" colour="#5468ff">
+        <block type="player_ingame"/>
+        <block type="player_position"/>
+        <block type="player_indimension"/>
+        <block type="player_username"/>
+    </category>
+    <category name="Display" colour="#f73030">
+        <block type="display_displaychattext"/>
+        <block type="display_startsound"/>
     </category>
 </xml>

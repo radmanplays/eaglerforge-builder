@@ -20,7 +20,7 @@
 
 <div class="nav">
     <img
-        src="/favicon_any.png"
+        src="/eaglerforge-icon.png"
         alt="Logo"
         class="logo-margin"
         style="height: 30px;"
@@ -48,7 +48,7 @@
         flex-direction: row;
         align-items: center;
 
-        background: #ff4b4b;
+        background: rgb(86, 114, 205)
     }
     .logo-margin {
         margin: 0 6px;
