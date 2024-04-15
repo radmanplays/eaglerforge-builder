@@ -20,7 +20,7 @@ function register() {
         //helpUrl: "#fullscreen",
     }, (block) => {
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
-        return `function onload() {\n${BLOCKS}}`;
+        return `async function onload() {\n${BLOCKS}}`;
     })
 
     // setInterval
