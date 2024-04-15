@@ -55,7 +55,7 @@ function register() {
         return [`ModAPI.player?ModAPI.player.dimension===${MENU2}:""`, javascriptGenerator.ORDER_ATOMIC];
     })
     registerBlock(`${categoryPrefix}username`, {
-        message0: '⚠️ username',
+        message0: 'username',
         args0: [],
         output: "String",
         inputsInline: true,
