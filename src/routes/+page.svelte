@@ -372,6 +372,10 @@
         window.open("https://discord.gg/UhYnFmbAzf")
     }
 
+    function github() {
+        window.open("https://github.com/OeildeLynx31/eaglerforge-builder")
+    }
+
     function startInstance() {
         let mod = encodeURIComponent(btoa(lastGeneratedCode));
         console.log(lastGeneratedCode);
@@ -485,6 +489,7 @@
 {/if}
 <NavigationBar>
     <NavigationButton on:click={discordInvite}>Discord</NavigationButton>
+    <NavigationButton on:click={github}>Github</NavigationButton>
     <NavigationDivider />
     <NavigationButton on:click={downloadProject}>Save</NavigationButton>
     <NavigationButton on:click={loadProject}>Load</NavigationButton><!--
