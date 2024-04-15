@@ -71,6 +71,7 @@
     import registerDebug from "../resources/blocks/debug.js";
     import registerPlayer from "../resources/blocks/player.js";
     import registerDisplay from "../resources/blocks/display.js";
+    import registerinterface from "../resources/blocks/interface.js";
     
     registerCore();
     registerControl();
@@ -85,8 +86,9 @@
     registerBlocks();
     registerFunctions();
     registerDebug();
-    registerPlayer()
-    registerDisplay()
+    registerPlayer();
+    registerDisplay();
+    registerinterface();
 
     const en = {
         rtl: false,
@@ -734,7 +736,8 @@
     .codeWrapper {
         position: relative;
         width: 100%;
-        height: calc(100% - 48px);
+        height: calc(100% - 55px);
+        padding-bottom: 5px;
     }
 
     .codeDisplay {

@@ -17,9 +17,14 @@ class Compiler {
         if (code.indexOf('variables["') > -1) {
             start+= 'let variables = [];';
         }
-        if (code.indexOf('function onload() {') > -1) {
-            start+= 'onload();';
+        if (code.indexOf('document.createElement("eaglerpage")') > -1) {
+            let style = "width:100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 10; color: white; font-family: Minecraftia, sans-serif; overflow-y: scroll; overflow-x: hidden; background-image: url(data:image/png;base64,UklGRhoBAABXRUJQVlA4TA0BAAAvn8AnAIWjtpEECdnA2N0DsTROy7xUqfrWw0jbyLkJKTz0+I20jTT/Bo89e1YR/Wfktm0Y+wNKLobT7QP/n/B7Z/naW26QHoTpHB7LFouyKHlzeHxfCStSuj9KdbC8z1IJ5iWiyQed48vtYJ+lUu0t4VwranS1XMIutSiLYlbb8G54uf2p3VPSfRZtSrlsPFjOzZZrd/us3B3uK+HcHJQql+xbLMrS/WqNpm6DeZ/VIPVYaN/KzUbp91nd9xl5pYu50dU2W417nbdTj5l2Ne92uM9qXNpyf6+oXkabHKXaZ1HS4Iaqpim+1KIJ+0M49/LjNbTGP5mrrMZEuc7Uzcb1ViOJ6TuOt4NGJs+zDgA=); background-color: rgb(60,60,60); background-blend-mode: multiply; background-size: 64px; ".replaceAll('; ', ';\n ')
+            start+= `
+            const sheet = window.document.styleSheets[0];
+            sheet.insertRule(\`\neaglerpage {\n ${style}}\n\`, sheet.cssRules.length);
+            `;
         }
+        
         const headerCode = start;
         const classRegistry = {
             top: [],
@@ -27,7 +32,11 @@ class Compiler {
             bottom: [
             ]
         }
-        const footerCode = [];
+        let end = '';
+        if (code.indexOf('function onload() {') > -1) {
+            end+= 'onload();';
+        }
+        const footerCode = end;
 
         if (imageStates) {
             if (imageStates.icon.image) {

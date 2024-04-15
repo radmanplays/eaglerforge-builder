@@ -155,4 +155,9 @@
     <category name="Display" colour="#f73030">
         <block type="display_displaychattext"/>
     </category>
+    <category name="Interface" colour="#78573a">
+        <block type="interface_definepage"/>
+        <block type="interface_showpage"/>
+        <block type="interface_hidepage"/>
+    </category>
 </xml>
