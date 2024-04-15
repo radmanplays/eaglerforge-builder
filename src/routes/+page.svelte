@@ -90,6 +90,8 @@
     registerDisplay();
     registerinterface();
 
+    const EaglerCraftVersion = "1.3";
+
     const en = {
         rtl: false,
         msg: {
@@ -373,7 +375,7 @@
         let mod = encodeURIComponent(btoa(lastGeneratedCode));
         console.log(lastGeneratedCode);
         document.getElementById('EaglerCraftInstance').innerHTML = `
-        <iframe src="https://oeildelynx.top7box.com/EaglerForge/?Mod=data:text/plain;charset=utf-8;base64,${mod}#embed" title="EaglerForge loader" width="100%" height="100%" style="border: 0px;"></iframe>`
+        <iframe src="/eaglerforge/${EaglerCraftVersion}/?Mod=data:text/plain;charset=utf-8;base64,${mod}#embed" title="EaglerForge loader" width="100%" height="100%" style="border: 0px;"></iframe>`
     }
 
     function stopInstance() {

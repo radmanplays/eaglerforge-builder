@@ -9,19 +9,17 @@ function register() {
         message0: 'display %1 in chat',
         args0: [
             {
-                "type": "field_input",
-                "name": "TEXT1",
-                "text": "hello world",
-                "spellcheck": false
-            },
+                "type": "input_value",
+                "name": "TEXT1"
+            }
         ],
         previousStatement: null,
         nextStatement: null,
         inputsInline: true,
         colour: categoryColor,
     }, (block) => {
-        const TEXT1 = block.getFieldValue('TEXT1')
-        const code = `ModAPI.displayToChat({msg: \`${TEXT1}\`});`;
+        const TEXT1 = javascriptGenerator.valueToCode(block, 'TEXT1', javascriptGenerator.ORDER_ATOMIC);
+        const code = `ModAPI.displayToChat({msg: ${TEXT1}});`;
         return `${code}\n`;
     })
 }

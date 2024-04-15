@@ -7,7 +7,8 @@ const categoryColor = '#FFBF00';
 function register() {
     registerBlock(`${categoryPrefix}modload`, {
         message0: 'when mod loaded %1 %2',
-        args0: [            {
+        args0: [
+        {
             "type": "input_dummy"
         },
         {
@@ -16,7 +17,7 @@ function register() {
         }],
         inputsInline: true,
         colour: categoryColor,
-        helpUrl: "#fullscreen",
+        //helpUrl: "#fullscreen",
     }, (block) => {
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         return `function onload() {\n${BLOCKS}}`;
@@ -41,7 +42,6 @@ function register() {
         ],
         inputsInline: true,
         colour: categoryColor,
-        helpUrl: "#fullscreen",
     }, (block) => {
         const TIME = javascriptGenerator.valueToCode(block, 'TIME', javascriptGenerator.ORDER_ATOMIC);
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
