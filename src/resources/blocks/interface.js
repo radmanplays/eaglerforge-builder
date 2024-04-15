@@ -68,7 +68,6 @@ function register() {
         return code;
     })
 
-
     function toPageName(name) {
         let Pagename = name.replaceAll(' ', '');
         return ("page" + Pagename.charAt(0).toUpperCase() + Pagename.slice(1));
