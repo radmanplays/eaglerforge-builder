@@ -154,6 +154,5 @@
     </category>
     <category name="Display" colour="#f73030">
         <block type="display_displaychattext"/>
-        <block type="display_startsound"/>
     </category>
 </xml>
