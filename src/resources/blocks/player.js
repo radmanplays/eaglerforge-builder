@@ -12,7 +12,7 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        return [`ModAPI.player.isPlayer()?true:false`, javascriptGenerator.ORDER_ATOMIC];
+        return [`ModAPI.player?(ModAPI.player.isPlayer()?true:false):false`, javascriptGenerator.ORDER_ATOMIC];
     })
     registerBlock(`${categoryPrefix}position`, {
         message0: "current %1 position",
