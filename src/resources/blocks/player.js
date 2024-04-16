@@ -32,8 +32,30 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const MENU = block.getFieldValue('MENU');
-        return [`(ModAPI.player?ModAPI.player.lastReportedPos${MENU}:"")`, javascriptGenerator.ORDER_ATOMIC];
+        return [`(ModAPI.player?ModAPI.player.${MENU}:"")`, javascriptGenerator.ORDER_ATOMIC];
     })
+
+    registerBlock(`${categoryPrefix}motion`, {
+        message0: "current %1 motion",
+        args0: [
+            {
+                "type": "field_dropdown",
+                "name": "MENU",
+                "options": [
+                    [ "X", "X" ],
+                    [ "Y", "Y" ],
+                    [ "Z", "Z" ],
+                ]
+            },
+        ],
+        output: "Number",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const MENU = block.getFieldValue('MENU');
+        return [`(ModAPI.player?ModAPI.player.motion${MENU}:"")`, javascriptGenerator.ORDER_ATOMIC];
+    })
+    
     registerBlock(`${categoryPrefix}indimension`, {
         message0: "is user in the %1 dimension",
         args0: [
