@@ -22,6 +22,33 @@ function register() {
         const code = `ModAPI.displayToChat({msg: ${TEXT1}});`;
         return `${code}\n`;
     })
+    registerBlock(`${categoryPrefix}currentscreen`, {
+        message0: 'current screen name',
+        args0: [],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        return [`ModAPI.currentScreen()`, javascriptGenerator.ORDER_ATOMIC];
+    })
+    registerBlock(`${categoryPrefix}getdisplayHeight`, {
+        message0: 'display Height (px)',
+        args0: [],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        return [`ModAPI.getdisplayHeight()`, javascriptGenerator.ORDER_ATOMIC];
+    })
+    registerBlock(`${categoryPrefix}getdisplayWidth`, {
+        message0: 'display Width (px)',
+        args0: [],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        return [`ModAPI.getdisplayWidth()`, javascriptGenerator.ORDER_ATOMIC];
+    })
 }
 
 export default register;

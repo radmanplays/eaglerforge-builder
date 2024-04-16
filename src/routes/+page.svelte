@@ -9,6 +9,7 @@
     import ControlBar from "$lib/ControlBar/ControlBar.svelte";
     import StartButton from "$lib/ControlBar/StartButton.svelte";
     import StopButton from "$lib/ControlBar/StopButton.svelte";
+    import OpenButton from "$lib/ControlBar/OpenButton.svelte";
     import FullscreenButton from "$lib/ControlBar/FullscreenButton.svelte";
     import EaglerCraft from "$lib/EaglerCraft/EaglerCraft.svelte"
 
@@ -145,6 +146,8 @@
     let projectName = "";
     let projectID = "";
     let lastGeneratedCode = "";
+
+    let windowObjectReference = null;
 
     const extensionImageStates = {
         icon: {
@@ -371,15 +374,85 @@
         window.open("https://discord.gg/UhYnFmbAzf")
     }
 
+    function github() {
+        window.open("https://github.com/OeildeLynx31/eaglerforge-builder")
+    }
+
     function startInstance() {
         let mod = encodeURIComponent(btoa(lastGeneratedCode));
         console.log(lastGeneratedCode);
-        document.getElementById('EaglerCraftInstance').innerHTML = `
-        <iframe src="/eaglerforge/${EaglerCraftVersion}/?Mod=data:text/plain;charset=utf-8;base64,${mod}#embed" title="EaglerForge loader" width="100%" height="100%" style="border: 0px;"></iframe>`
+        if (windowObjectReference == null || windowObjectReference.closed) {
+            document.getElementById('EaglerCraftInstance').innerHTML = `
+            <iframe src="/eaglerforge/${EaglerCraftVersion}/?Mod=data:text/plain;charset=utf-8;base64,${mod}#embed" title="EaglerForge loader" width="100%" height="100%" style="border: 0px;"></iframe>`
+        } else {
+            windowObjectReference.focus();
+            windowObjectReference.location.href = `${window.location.origin}/eaglerforge/${EaglerCraftVersion}/?Mod=data:text/plain;charset=utf-8;base64,${mod}`;
+            document.getElementById('EaglerCraftInstance').innerHTML = `
+            <div style="height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <div style="text-align: center" class="popupOpened">
+                    <svg width="50px" height="50px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>
+                    <p>The EaglerCraft instance is opened in a popup</p>
+                </div>
+            </div>`;
+            document.getElementById('open').style.display = "none";
+        }
+
     }
 
     function stopInstance() {
-        document.getElementById('EaglerCraftInstance').innerHTML = '';
+        if (windowObjectReference == null || windowObjectReference.closed) {
+            document.getElementById('EaglerCraftInstance').innerHTML = '';
+        } else {
+            windowObjectReference.close();
+            document.getElementById('open').style.display = "initial";
+            document.getElementById('EaglerCraftInstance').innerHTML = '';
+        }
+    }
+
+    function openInstancePopup() {
+        let mod = encodeURIComponent(btoa(lastGeneratedCode));
+        if (windowObjectReference == null || windowObjectReference.closed) {
+            document.getElementById('EaglerCraftInstance').innerHTML = `
+            <div style="height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <div style="text-align: center" class="popupOpened">
+                    <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>
+                    <p>The EaglerCraft instance is opened in a popup</p>
+                </div>
+            </div>`;
+            windowObjectReference = window.open(
+                `${window.location.origin}/eaglerforge/${EaglerCraftVersion}/?Mod=data:text/plain;charset=utf-8;base64,${mod}`,
+                "EaglerForge Mod Preview",
+                "popup",
+            );
+            /*windowObjectReference.addEventListener('beforeunload', () => {
+                document.getElementById('EaglerCraftInstance').innerHTML = '';
+                document.getElementById('open').style.display = "initial";
+            })*/ //better but doesn't work with WebKit
+            let timer = setInterval(function() { 
+                if(windowObjectReference.closed) {
+                    clearInterval(timer);
+                    document.getElementById('EaglerCraftInstance').innerHTML = '';
+                    document.getElementById('open').style.display = "initial";
+                }
+            }, 100);
+            window.addEventListener('beforeunload', () => {
+                windowObjectReference.close();
+            })
+            if (location.hash === "#fullscreen") {
+                document.getElementById('fullscreenButton').click();
+            }
+        } else {
+            windowObjectReference.focus();
+            windowObjectReference.location.reload();
+            document.getElementById('EaglerCraftInstance').innerHTML = `
+            <div style="height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <div style="text-align: center" class="popupOpened">
+                    <svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>
+                    <p>The EaglerCraft instance is opened in a popup</p>
+                </div>
+            </div>`;
+        }
+        document.getElementById('open').style.display = "none";
     }
 
     function switchFullscreen() {
@@ -425,6 +498,7 @@
 {/if}
 <NavigationBar>
     <NavigationButton on:click={discordInvite}>Discord</NavigationButton>
+    <NavigationButton on:click={github}>Github</NavigationButton>
     <NavigationDivider />
     <NavigationButton on:click={downloadProject}>Save</NavigationButton>
     <NavigationButton on:click={loadProject}>Load</NavigationButton><!--
@@ -469,6 +543,8 @@
                         on:click={startInstance}/>
                     <StopButton
                         on:click={stopInstance}/>
+                    <OpenButton
+                        on:click={openInstancePopup}/>
                     <FullscreenButton
                         on:click={switchFullscreen}>
                         <i class="fa fa-expand"></i>
@@ -762,5 +838,15 @@
     .warning {
         background-color: yellow;
         color: black;
+    }
+
+    :global(.popupOpened) {
+        fill: rgb(50, 50, 50);
+        color: rgb(50, 50, 50);
+    }
+
+    :global(body.dark) :global(.popupOpened) {
+        fill: white;
+        color: white;
     }
 </style>
