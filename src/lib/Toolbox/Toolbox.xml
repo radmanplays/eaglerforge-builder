@@ -153,13 +153,14 @@
     </category>
     <sep></sep>
     <category name="Player" colour="#5468ff">
+        <block type="player_username"/>
         <block type="player_ingame"/>
         <sep gap="48"></sep>
         <block type="player_position"/>
         <block type="player_motion"/>
         <block type="player_indimension"/>
         <sep gap="48"></sep>
-        <block type="player_username"/>
+        <block type="player_keypressed"/>
     </category>
     <category name="Display" colour="#f73030">
         <block type="display_displaychattext"/>
