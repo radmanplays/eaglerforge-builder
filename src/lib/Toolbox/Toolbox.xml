@@ -1,8 +1,12 @@
 <xml>
     <category name="Events" colour="#FFBF00">
         <block type="events_modload" />
-        <block type="events_interval" />
         <block type="events_eachTicks" />
+        <block type="events_gui" />
+        <block type="events_load" />
+        <block type="events_frame" />
+        <block type="events_drawhud" />
+        <block type="events_interval" />
         <block type="events_timeout" />
     </category>
     <category name="Control" colour="#FFAB19">
@@ -149,10 +153,14 @@
     <category name="Player" colour="#5468ff">
         <block type="player_ingame"/>
         <block type="player_position"/>
+        <block type="player_motion"/>
         <block type="player_indimension"/>
         <block type="player_username"/>
     </category>
     <category name="Display" colour="#f73030">
         <block type="display_displaychattext"/>
+        <block type="display_currentscreen"/>
+        <block type="display_getdisplayHeight"/>
+        <block type="display_getdisplayWidth"/>
     </category>
 </xml>
