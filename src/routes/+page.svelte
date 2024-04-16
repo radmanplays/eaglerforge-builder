@@ -380,7 +380,7 @@
             <iframe src="/eaglerforge/${EaglerCraftVersion}/?Mod=data:text/plain;charset=utf-8;base64,${mod}#embed" title="EaglerForge loader" width="100%" height="100%" style="border: 0px;"></iframe>`
         } else {
             windowObjectReference.focus();
-            windowObjectReference.location.reload();
+            windowObjectReference.location.href = `${window.location.origin}/eaglerforge/${EaglerCraftVersion}/?Mod=data:text/plain;charset=utf-8;base64,${mod}`;
             document.getElementById('EaglerCraftInstance').innerHTML = `
             <div style="height: 100%; width: 100%; display: flex; align-items: center; justify-content: center;">
                 <div style="text-align: center" class="popupOpened">
@@ -418,10 +418,17 @@
                 "EaglerForge Mod Preview",
                 "popup",
             );
-            windowObjectReference.addEventListener('beforeunload', () => {
+            /*windowObjectReference.addEventListener('beforeunload', () => {
                 document.getElementById('EaglerCraftInstance').innerHTML = '';
                 document.getElementById('open').style.display = "initial";
-            })
+            })*/ //better but doesn't work with WebKit
+            let timer = setInterval(function() { 
+                if(windowObjectReference.closed) {
+                    clearInterval(timer);
+                    document.getElementById('EaglerCraftInstance').innerHTML = '';
+                    document.getElementById('open').style.display = "initial";
+                }
+            }, 100);
             window.addEventListener('beforeunload', () => {
                 windowObjectReference.close();
             })
