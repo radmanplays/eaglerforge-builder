@@ -3,6 +3,8 @@
         <block type="events_modload" />
         <block type="events_load" />
         <sep gap="48"></sep>
+        <block type="events_whenkeypressed" />
+        <sep gap="48"></sep>
         <block type="events_eachTicks" />
         <block type="events_frame" />
         <block type="events_interval" />
@@ -43,6 +45,7 @@
         <block type="sensing_leapyear" />
         <sep gap="48"></sep>
         <block type="sensing_fps" />
+        <block type="sensing_keypressed" />
     </category>
     <category name="Literals" colour="#59C08E">
         <block type="literals_null" />
@@ -160,7 +163,7 @@
         <block type="player_motion"/>
         <block type="player_indimension"/>
         <sep gap="48"></sep>
-        <block type="player_keypressed"/>
+        <block type="player_whengamekeypressed"/>
     </category>
     <category name="Display" colour="#f73030">
         <block type="display_displaychattext"/>

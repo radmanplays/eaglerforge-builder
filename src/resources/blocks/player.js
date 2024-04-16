@@ -76,6 +76,7 @@ function register() {
         const MENU2 = block.getFieldValue('MENU2');
         return [`ModAPI.player?ModAPI.player.dimension===${MENU2}:""`, javascriptGenerator.ORDER_ATOMIC];
     })
+
     registerBlock(`${categoryPrefix}username`, {
         message0: 'username',
         args0: [],
@@ -86,7 +87,7 @@ function register() {
         return [`ModAPI.getProfileName()`, javascriptGenerator.ORDER_ATOMIC];
     })
 
-    registerBlock(`${categoryPrefix}keypressed`, {
+    registerBlock(`${categoryPrefix}whengamekeypressed`, {
         message0: 'when in game key %1 pressed do %2 %3',
         args0: [
             {
@@ -116,9 +117,9 @@ function register() {
 const keyBoard = [
     ["SPACE", "57"],
     ["UP ARROW", "200"],
-    ["UP DOWN", "208"],
-    ["UP LEFT", "203"],
-    ["UP RIGHT", "205"],
+    ["DOWN ARROW", "208"],
+    ["LEFT ARROW", "203"],
+    ["RIGHT ARROW", "205"],
     ["A", "30"],
     ["B", "48"],
     ["C", "46"],
