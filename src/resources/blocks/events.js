@@ -23,6 +23,44 @@ function register() {
         return `${BLOCKS.indexOf('await') > -1 ? 'async' : ''} function onload() {\n${BLOCKS}}`;
     })
 
+    registerBlock(`${categoryPrefix}eachTicks`, {
+        message0: 'every in game ticks do %1 %2',
+        args0: [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        inputsInline: true,
+        colour: categoryColor,
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `ModAPI.addEventListener("update", () => { ${BLOCKS} });`;
+        return `${code}\n`;
+    })
+
+    registerBlock(`${categoryPrefix}gui`, {
+        message0: 'when Mod Manager opens  %1 %2',
+        args0: [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        inputsInline: true,
+        colour: categoryColor,
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `ModAPI.addEventListener("gui", () => { ${BLOCKS} });`;
+        return `${code}\n`;
+    })
+
     // setInterval
     registerBlock(`${categoryPrefix}interval`, {
         message0: 'every %1 seconds do %2 %3',
@@ -46,25 +84,6 @@ function register() {
         const TIME = javascriptGenerator.valueToCode(block, 'TIME', javascriptGenerator.ORDER_ATOMIC);
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `setInterval(async () => { ${BLOCKS} }, (${TIME} * 1000));`;
-        return `${code}\n`;
-    })
-
-    registerBlock(`${categoryPrefix}eachTicks`, {
-        message0: 'every in game ticks do %1 %2',
-        args0: [
-            {
-                "type": "input_dummy"
-            },
-            {
-                "type": "input_statement",
-                "name": "BLOCKS"
-            }
-        ],
-        inputsInline: true,
-        colour: categoryColor,
-    }, (block) => {
-        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
-        const code = `ModAPI.addEventListener("update", () => { ${BLOCKS} });`;
         return `${code}\n`;
     })
 
