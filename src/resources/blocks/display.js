@@ -23,7 +23,7 @@ function register() {
         return `${code}\n`;
     })
     registerBlock(`${categoryPrefix}currentscreen`, {
-        message0: 'current screen',
+        message0: 'current screen name',
         args0: [],
         output: "String",
         inputsInline: true,
@@ -32,7 +32,7 @@ function register() {
         return [`ModAPI.currentScreen()`, javascriptGenerator.ORDER_ATOMIC];
     })
     registerBlock(`${categoryPrefix}getdisplayHeight`, {
-        message0: 'display Height',
+        message0: 'display Height (px)',
         args0: [],
         output: "String",
         inputsInline: true,
@@ -41,7 +41,7 @@ function register() {
         return [`ModAPI.getdisplayHeight()`, javascriptGenerator.ORDER_ATOMIC];
     })
     registerBlock(`${categoryPrefix}getdisplayWidth`, {
-        message0: 'display Width',
+        message0: 'display Width (px)',
         args0: [],
         output: "String",
         inputsInline: true,
