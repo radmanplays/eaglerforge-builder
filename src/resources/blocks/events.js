@@ -6,7 +6,7 @@ const categoryColor = '#FFBF00';
 
 function register() {
     registerBlock(`${categoryPrefix}modload`, {
-        message0: 'when mod loaded %1 %2',
+        message0: 'when mod loaded do %1 %2',
         args0: [
         {
             "type": "input_dummy"
@@ -43,7 +43,7 @@ function register() {
     })
 
     registerBlock(`${categoryPrefix}gui`, {
-        message0: 'when Mod Manager opens  %1 %2',
+        message0: 'when Mod Manager opens do %1 %2',
         args0: [
             {
                 "type": "input_dummy"
@@ -58,6 +58,63 @@ function register() {
     }, (block) => {
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `ModAPI.addEventListener("gui", () => { ${BLOCKS} });`;
+        return `${code}\n`;
+    })
+
+    registerBlock(`${categoryPrefix}load`, {
+        message0: 'after every mod finishes loading do %1 %2',
+        args0: [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        inputsInline: true,
+        colour: categoryColor,
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `ModAPI.addEventListener("load", () => { ${BLOCKS} });`;
+        return `${code}\n`;
+    })
+
+    registerBlock(`${categoryPrefix}frame`, {
+        message0: 'every frame do %1 %2',
+        args0: [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        inputsInline: true,
+        colour: categoryColor,
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `ModAPI.addEventListener("frame", () => { ${BLOCKS} });`;
+        return `${code}\n`;
+    })
+
+    registerBlock(`${categoryPrefix}drawhud`, {
+        message0: 'when HUD is drawn to screen do %1 %2',
+        args0: [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        inputsInline: true,
+        colour: categoryColor,
+    }, (block) => {
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `ModAPI.addEventListener("drawhud", () => { ${BLOCKS} });`;
         return `${code}\n`;
     })
 
