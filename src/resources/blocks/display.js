@@ -3,7 +3,7 @@ import registerBlock from '../register';
 
 const categoryPrefix = 'display_';
 const categoryColor = '#f73030';
-
+ 
 function register() {
     registerBlock(`${categoryPrefix}displaychattext`, {
         message0: 'display %1 in chat',
