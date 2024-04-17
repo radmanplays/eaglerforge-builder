@@ -6,9 +6,8 @@ const categoryPrefix = 'sensing_';
 const categoryColor = '#5CB1D6';
 
 function register() {
-    // when key pressed
-    registerBlock(`${categoryPrefix}keypress`, {
-        message0: 'when key %1 is pressed %2 %3',
+    registerBlock(`${categoryPrefix}keydown`, {
+        message0: 'when key %1 is down %2 %3',
         args0: [
             {
                 "type": "field_input",
@@ -32,7 +31,7 @@ function register() {
     }, (block) => {
         const KEY = block.getFieldValue('KEY')
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
-        const code = `document.addEventListener("keypress", event => {
+        const code = `window.addEventListener("keydown", event => {
             if (event.key == '${KEY}') { ${BLOCKS} }
         });`;
         return `${code}\n`;
