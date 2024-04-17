@@ -18,6 +18,8 @@
         <block type="control_waituntil" />
         <sep gap="48"></sep>
         <block type="control_repeat" />
+        <block type="control_while" />
+        <block type="control_until" />
         <sep gap="48"></sep>
         <block type="control_ifthen" />
         <block type="control_ifthenelse" />
@@ -166,7 +168,13 @@
         <block type="player_whengamekeypressed"/>
     </category>
     <category name="Display" colour="#f73030">
-        <block type="display_displaychattext"/>
+        <block type="display_displaychattext">
+            <value name="TEXT1">
+                <block type="literals_string">
+                    <field name="STRING">hello world!</field>
+                </block>
+            </value>
+        </block>
         <sep gap="48"></sep>
         <block type="display_currentscreen"/>
         <sep gap="48"></sep>
