@@ -195,7 +195,7 @@ function register() {
         const KEY = block.getFieldValue('KEY')
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `window.addEventListener("keydown", event => {
-            ${KEY===""?`${BLOCKS}`:`if (event.key == '${KEY}') { ${BLOCKS}}`}});`;
+            ${KEY===""?`${BLOCKS}`:`if (event.keyCode == '${KEY}') { ${BLOCKS}}`}});`;
         return `${code}\n`;
     })
 }
