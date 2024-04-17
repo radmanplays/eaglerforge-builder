@@ -173,7 +173,7 @@ function register() {
     })
 
     registerBlock(`${categoryPrefix}whenkeypressed`, {
-        message0: 'when %1 key is pressed %2 %3',
+        message0: 'when %1 key is down %2 %3',
         args0: [
             {
                 "type": "field_dropdown",
@@ -194,7 +194,7 @@ function register() {
     }, (block) => {
         const KEY = block.getFieldValue('KEY')
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
-        const code = `document.addEventListener("keypress", event => {
+        const code = `window.addEventListener("keydown", event => {
             ${KEY===""?`${BLOCKS}`:`if (event.key == '${KEY}') { ${BLOCKS}}`}});`;
         return `${code}\n`;
     })
