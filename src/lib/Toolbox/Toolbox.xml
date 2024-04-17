@@ -34,8 +34,10 @@
         <block type="sound_startsound" />
     </category>
     <category name="Sensing" colour="#5CB1D6">
-        <block type="sensing_keydown" />
+        <!--
+        <block type="sensing_keypress" />
         <sep gap="48"></sep>
+        -->
         <block type="sensing_alert" />
         <block type="sensing_prompt" />
         <block type="sensing_confirm" />
