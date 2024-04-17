@@ -86,8 +86,8 @@
     registerBlocks();
     registerFunctions();
     registerDebug();
-    registerPlayer()
-    registerDisplay()
+    registerPlayer();
+    registerDisplay();
 
     const EaglerCraftVersion = "1.3";
 

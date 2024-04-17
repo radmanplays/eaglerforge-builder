@@ -14,8 +14,13 @@ class Compiler {
         if (code.indexOf('ModAPI.player') > -1) {
             start+= "ModAPI.require('player');";
         }
-        if (code.indexOf('variables["') > -1) {
+        if (code.indexOf('variables[') > -1) {
             start+= 'let variables = [];';
+        }
+        if (code.indexOf('pressedKeys[') > -1) {
+            start+= `var pressedKeys = {};
+            window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }
+            window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }`;
         }
         if (code.indexOf('function onload() {') > -1) {
             start+= 'onload();';

@@ -3,6 +3,8 @@
         <block type="events_modload" />
         <block type="events_load" />
         <sep gap="48"></sep>
+        <block type="events_whenkeypressed" />
+        <sep gap="48"></sep>
         <block type="events_eachTicks" />
         <block type="events_frame" />
         <block type="events_interval" />
@@ -16,6 +18,8 @@
         <block type="control_waituntil" />
         <sep gap="48"></sep>
         <block type="control_repeat" />
+        <block type="control_while" />
+        <block type="control_until" />
         <sep gap="48"></sep>
         <block type="control_ifthen" />
         <block type="control_ifthenelse" />
@@ -41,6 +45,7 @@
         <block type="sensing_leapyear" />
         <sep gap="48"></sep>
         <block type="sensing_fps" />
+        <block type="sensing_keypressed" />
     </category>
     <category name="Literals" colour="#59C08E">
         <block type="literals_null" />
@@ -158,10 +163,16 @@
         <block type="player_motion"/>
         <block type="player_indimension"/>
         <sep gap="48"></sep>
-        <block type="player_keypressed"/>
+        <block type="player_whengamekeypressed"/>
     </category>
     <category name="Display" colour="#f73030">
-        <block type="display_displaychattext"/>
+        <block type="display_displaychattext">
+            <value name="TEXT1">
+                <block type="literals_string">
+                    <field name="STRING">hello world!</field>
+                </block>
+            </value>
+        </block>
         <sep gap="48"></sep>
         <block type="display_currentscreen"/>
         <sep gap="48"></sep>
