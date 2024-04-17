@@ -16,7 +16,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"blockly",
+		"blockly": "10.4.3",
 		"@sveltejs/adapter-vercel": "^3.0.2",
 		"file-saver": "^2.0.5",
 		"js-beautify": "^1.14.9",
