@@ -6,37 +6,6 @@ const categoryPrefix = 'sensing_';
 const categoryColor = '#5CB1D6';
 
 function register() {
-    registerBlock(`${categoryPrefix}keydown`, {
-        message0: 'when key %1 is down %2 %3',
-        args0: [
-            {
-                "type": "field_input",
-                "name": "KEY",
-                "spellcheck": false
-            },
-            {
-                "type": "input_dummy"
-            },
-            {
-                "type": "input_statement",
-                "name": "BLOCKS"
-            }
-        ],
-        nextStatement: null,
-        inputsInline: true,
-        colour: categoryColor,
-        extensions: [
-          'single_character_validation',
-        ],
-    }, (block) => {
-        const KEY = block.getFieldValue('KEY')
-        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
-        const code = `window.addEventListener("keydown", event => {
-            if (event.key == '${KEY}') { ${BLOCKS} }
-        });`;
-        return `${code}\n`;
-    })
-
     // alert
     registerBlock(`${categoryPrefix}alert`, {
         message0: 'alert %1',
