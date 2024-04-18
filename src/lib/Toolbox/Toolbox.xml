@@ -86,6 +86,7 @@
         <sep gap="48"></sep>
         <block type="operators_join" />
         <block type="operators_letter" />
+        <block type="operators_addblock" />
     </category>
     <category name="Conversions" colour="#8BC059">
         <block type="conversions_tonumber" />
