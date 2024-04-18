@@ -162,6 +162,7 @@
     <sep></sep>
     <category name="Player" colour="#5468ff">
         <block type="player_username"/>
+        <block type="player_reload"/>
         <block type="player_ingame"/>
         <sep gap="48"></sep>
         <block type="player_position"/>
