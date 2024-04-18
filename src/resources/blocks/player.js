@@ -112,6 +112,14 @@ function register() {
             if(ev.key == ${MENU3}){${BLOCKS}}});`;
         return `${code}\n`;
     })
+    registerBlock(`${categoryPrefix}reload`, {
+        message0: 'load new player values into game',
+        args0: [],
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        return [`ModAPI.reload`, javascriptGenerator.ORDER_ATOMIC];
+    })
 }
 
 const keyBoard = [
