@@ -115,6 +115,8 @@ function register() {
     registerBlock(`${categoryPrefix}reload`, {
         message0: 'load new player values into game',
         args0: [],
+        previousStatement: null,
+        nextStatement: null,
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
