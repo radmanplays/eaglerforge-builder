@@ -3,7 +3,8 @@
         <block type="events_modload" />
         <block type="events_load" />
         <sep gap="48"></sep>
-        <block type="events_whenkeypressed" />
+        <block type="events_whenkeydown" />
+        <block type="events_whenkeyup" />
         <sep gap="48"></sep>
         <block type="events_eachTicks" />
         <block type="events_frame" />
