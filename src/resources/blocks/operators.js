@@ -527,8 +527,8 @@ function register() {
     }, (block) => {
         const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
         const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
-
-        return [`(${X || 0} += ${Y || 0})`, javascriptGenerator.ORDER_ATOMIC];
+        const code = `${X || 0} += ${Y || 0};`;
+        return `${code}\n`;
     })
 }
 
