@@ -162,6 +162,28 @@ ${BLOCKS}*/;`;
         const FUNC = javascriptGenerator.statementToCode(block, 'FUNC');
         return [`await (async () => { try { ${FUNC} return true; } catch { return false; } })()`, javascriptGenerator.ORDER_ATOMIC];
     })
+    registerBlock(`${categoryPrefix}sendtowebhook`, {
+        message0: 'send %1 to webhook url %2',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "TEXT1"
+            },
+            {
+                "type": "input_value",
+                "name": "TEXT2"
+            }
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor,
+    }, (block) => {
+        const TEXT1 = javascriptGenerator.valueToCode(block, 'TEXT1', javascriptGenerator.ORDER_ATOMIC);
+        const TEXT2 = javascriptGenerator.valueToCode(block, 'TEXT2', javascriptGenerator.ORDER_ATOMIC);
+        const code = `sendData(${TEXT1},${TEXT2});`;
+        return `${code}\n`;
+    })
 }
 
 export default register;
