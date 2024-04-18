@@ -120,7 +120,8 @@ function register() {
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        return [`ModAPI.reload`, javascriptGenerator.ORDER_ATOMIC];
+        const code = `ModAPI.player.reload()`;
+        return `${code}\n`;
     })
 }
 
