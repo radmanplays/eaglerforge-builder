@@ -14,6 +14,19 @@ class Compiler {
         if (code.indexOf('ModAPI.player') > -1) {
             start+= "ModAPI.require('player');";
         }
+        if (code.indexOf('sendData(') > -1) {
+            start+= `function sendData(message,url) {
+    var request = new XMLHttpRequest();
+    request.open("POST", url);
+    request.setRequestHeader("Content-type", "application/json");
+
+    var params = {
+        content: message
+    };
+
+    request.send(JSON.stringify(params));
+}`;
+        }
         if (code.indexOf('variables[') > -1) {
             start+= 'let variables = [];';
         }
