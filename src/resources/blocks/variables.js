@@ -5,30 +5,12 @@ const categoryPrefix = 'variable_';
 const categoryColor = '#FF8C1A';
 
 function register() {
-        registerBlock(`${categoryPrefix}definevar`, {
-        message0: 'define new variable called %1',
-        args0: [
-            {
-                "type": "field_input",
-                "name": "NAME",
-                "checks": "String"
-            }
-        ],
-        previousStatement: null,
-        nextStatement: null,
-        inputsInline: true,
-        colour: categoryColor
-    }, (block) => {
-        const NAME = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-        const code = `var ${NAME}`;
-        return `${code}\n`;
-    })
     // set variable
     registerBlock(`${categoryPrefix}set`, {
-        message0: 'set value of variable %1 to %2',
+        message0: 'set %1 to %2',
         args0: [
             {
-                "type": "field_input",
+                "type": "input_value",
                 "name": "NAME",
                 "checks": "String"
             },
@@ -44,16 +26,16 @@ function register() {
     }, (block) => {
         const NAME = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
         const VAR = javascriptGenerator.valueToCode(block, 'VAR', javascriptGenerator.ORDER_ATOMIC);
-        const code = `${NAME || '""'} = ${VAR || '""'}`;
+        const code = `variables[${NAME || '""'}] = ${VAR || '""'}`;
         return `${code}\n`;
     })
 
     // get variable
     registerBlock(`${categoryPrefix}get`, {
-        message0: 'get variable %1',
+        message0: 'get %1',
         args0: [
             {
-                "type": "field_input",
+                "type": "input_value",
                 "name": "NAME",
                 "checks": "String"
             }
@@ -63,7 +45,7 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const NAME = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-        return [`${NAME}`, javascriptGenerator.ORDER_ATOMIC];
+        return [`variables[${NAME || '""'}]`, javascriptGenerator.ORDER_ATOMIC];
     })
     // set localStorage
     registerBlock(`${categoryPrefix}setls`, {
