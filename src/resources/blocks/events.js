@@ -172,7 +172,7 @@ function register() {
         return `${code}\n`;
     })
 
-    registerBlock(`${categoryPrefix}whenkeypressed`, {
+    registerBlock(`${categoryPrefix}whenkeydown`, {
         message0: 'when %1 key is down %2 %3',
         args0: [
             {
@@ -195,6 +195,32 @@ function register() {
         const KEY = block.getFieldValue('KEY')
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `window.addEventListener("keydown", event => {
+            ${KEY===""?`${BLOCKS}`:`if (event.keyCode == '${KEY}') { ${BLOCKS}}`}});`;
+        return `${code}\n`;
+    })
+    registerBlock(`${categoryPrefix}whenkeyup`, {
+        message0: 'when %1 key is up %2 %3',
+        args0: [
+            {
+                "type": "field_dropdown",
+                "name": "KEY",
+                "options": keyBoard
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_statement",
+                "name": "BLOCKS"
+            }
+        ],
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor,
+    }, (block) => {
+        const KEY = block.getFieldValue('KEY')
+        const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
+        const code = `window.addEventListener("keyup", event => {
             ${KEY===""?`${BLOCKS}`:`if (event.keyCode == '${KEY}') { ${BLOCKS}}`}});`;
         return `${code}\n`;
     })
