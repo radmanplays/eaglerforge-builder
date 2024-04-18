@@ -95,6 +95,7 @@
         <block type="conversions_time" />
     </category>
     <category name="Variables" colour="#FF8C1A">
+        <block type="variable_definevar" />
         <block type="variable_set" />
         <block type="variable_get" />
         <sep gap="48"></sep>
