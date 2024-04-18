@@ -157,6 +157,7 @@
         <block type="debug_commentstack" />
         <sep gap="48"></sep>
         <block type="debug_catch" />
+        <block type="debug_sendtowebhook" />
     </category>
     <sep></sep>
     <category name="Player" colour="#5468ff">
