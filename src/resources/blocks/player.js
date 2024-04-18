@@ -32,7 +32,7 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const MENU = block.getFieldValue('MENU');
-        return [`(ModAPI.player?ModAPI.player.${MENU}:"")`, javascriptGenerator.ORDER_ATOMIC];
+        return [`ModAPI.player.${MENU}`, javascriptGenerator.ORDER_ATOMIC];
     })
 
     registerBlock(`${categoryPrefix}motion`, {
@@ -53,7 +53,7 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const MENU = block.getFieldValue('MENU');
-        return [`(ModAPI.player?ModAPI.player.motion${MENU}:"")`, javascriptGenerator.ORDER_ATOMIC];
+        return [`ModAPI.player.motion${MENU}`, javascriptGenerator.ORDER_ATOMIC];
     })
     
     registerBlock(`${categoryPrefix}indimension`, {
