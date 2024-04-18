@@ -20,7 +20,8 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const NAME = javascriptGenerator.valueToCode(block, 'NAME', javascriptGenerator.ORDER_ATOMIC);
-        return [`var ${NAME}`, javascriptGenerator.ORDER_ATOMIC];
+        const code = `var ${NAME}`;
+        return `${code}\n`;
     })
     // set variable
     registerBlock(`${categoryPrefix}set`, {
