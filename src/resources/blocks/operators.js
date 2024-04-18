@@ -506,6 +506,30 @@ function register() {
 
         return [`Math.floor(Math.random()*(${Y} - ${X} + 1) + ${X})`, javascriptGenerator.ORDER_ATOMIC];
     })
+    registerBlock(`${categoryPrefix}addblock`, {
+        message0: '%1 + %2',
+        args0: [
+            {
+                "type": "input_value",
+                "name": "X",
+                "check": "Number"
+            },
+            {
+                "type": "input_value",
+                "name": "Y",
+                "check": "Number"
+            }
+        ],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const X = javascriptGenerator.valueToCode(block, 'X', javascriptGenerator.ORDER_ATOMIC);
+        const Y = javascriptGenerator.valueToCode(block, 'Y', javascriptGenerator.ORDER_ATOMIC);
+        const code = `${X || 0} += ${Y || 0};`;
+        return `${code}\n`;
+    })
 }
 
 export default register;
