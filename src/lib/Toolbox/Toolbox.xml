@@ -160,18 +160,40 @@
         <block type="player_indimension"/>
         <sep gap="48"></sep>
         <block type="player_username"/>
+        <sep gap="48"></sep>
+        <block type="player_setpropertyboolean"/>
+        <block type="player_getpropertyboolean"/>
+        <block type="player_setpropertynumber"/>
+        <block type="player_getpropertynumber"/>
+        <sep gap="48"></sep>
+        <block type="player_sendchat">
+            <value name="COMMAND">
+                <block type="literals_string">
+                    <field name="STRING">hi!</field>
+                </block>
+            </value>
+        </block>
+        <block type="player_execommand">
+            <value name="COMMAND">
+                <block type="literals_string">
+                    <field name="STRING">/kill @a</field>
+                </block>
+            </value>
+        </block>
     </category>
     <category name="Display" colour="#f73030">
         <block type="display_displaychattext"/>
         <sep gap="48"></sep>
-        <block type="display_currentscreen"/>
-        <sep gap="48"></sep>
         <block type="display_getdisplayHeight"/>
         <block type="display_getdisplayWidth"/>
+        <sep gap="48"></sep>
+        <block type="display_closescreen"/>
     </category>
     <category name="Interface" colour="#78573a">
-        <block type="interface_definepage"/>
-        <block type="interface_showpage"/>
-        <block type="interface_hidepage"/>
+        <block type="interface_definepage" disabled="true"/>
+        <block type="interface_showpage" disabled="true"/>
+        <block type="interface_hidepage" disabled="true"/>
+        <sep gap="48"></sep>
+        <block type="interface_currentscreen"/>
     </category>
 </xml>

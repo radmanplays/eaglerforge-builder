@@ -49,6 +49,7 @@ function register() {
         const code = `document.body.appendChild(${ID});`;
         return code;
     });
+
     registerBlock(`${categoryPrefix}hidepage`, {
         message0: 'hide page with id %1',
         args0: [
@@ -72,6 +73,16 @@ function register() {
         let Pagename = name.replaceAll(' ', '');
         return ("page" + Pagename.charAt(0).toUpperCase() + Pagename.slice(1));
     }
+
+    registerBlock(`${categoryPrefix}currentscreen`, {
+        message0: 'current screen name',
+        args0: [],
+        output: "String",
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        return [`ModAPI.currentScreen()`, javascriptGenerator.ORDER_ATOMIC];
+    })
 }
 
 export default register;

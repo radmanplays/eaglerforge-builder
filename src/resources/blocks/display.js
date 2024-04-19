@@ -22,15 +22,7 @@ function register() {
         const code = `ModAPI.displayToChat({msg: ${TEXT1}});`;
         return `${code}\n`;
     })
-    registerBlock(`${categoryPrefix}currentscreen`, {
-        message0: 'current screen name',
-        args0: [],
-        output: "String",
-        inputsInline: true,
-        colour: categoryColor
-    }, (block) => {
-        return [`ModAPI.currentScreen()`, javascriptGenerator.ORDER_ATOMIC];
-    })
+
     registerBlock(`${categoryPrefix}getdisplayHeight`, {
         message0: 'display Height (px)',
         args0: [],
@@ -40,6 +32,7 @@ function register() {
     }, (block) => {
         return [`ModAPI.getdisplayHeight()`, javascriptGenerator.ORDER_ATOMIC];
     })
+
     registerBlock(`${categoryPrefix}getdisplayWidth`, {
         message0: 'display Width (px)',
         args0: [],
@@ -48,6 +41,17 @@ function register() {
         colour: categoryColor
     }, (block) => {
         return [`ModAPI.getdisplayWidth()`, javascriptGenerator.ORDER_ATOMIC];
+    })
+
+    registerBlock(`${categoryPrefix}closescreen`, {
+        message0: 'close in game interface',
+        args0: [],
+        previousStatement: null,
+        nextStatement: null,
+        colour: categoryColor
+    }, (block) => {
+        const code = `ModAPI.player.closeScreen()`;
+        return code;
     })
 }
 
