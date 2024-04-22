@@ -323,7 +323,7 @@ function register() {
         }`;
         return `${code}\n`;
     })
-}
+
 
     registerBlock(`${categoryPrefix}keypressed`, {
         message0: 'when in game key %1 pressed do %2 %3',
@@ -350,6 +350,7 @@ function register() {
             if(ev.key == ${MENU3}){${BLOCKS}}});`;
         return `${code}\n`;
     })
+}
 
 const keyBoard = [
     ["SPACE", "57"],
