@@ -350,7 +350,6 @@ function register() {
             if(ev.key == ${MENU3}){${BLOCKS}}});`;
         return `${code}\n`;
     })
-}
 
 const keyBoard = [
     ["SPACE", "57"],
