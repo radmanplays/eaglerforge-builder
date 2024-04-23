@@ -197,7 +197,6 @@
             </value>
         </block>
         <sep gap="48"></sep>
-        <block type="display_currentscreen"/>
         <sep gap="48"></sep>
         <block type="display_getdisplayHeight"/>
         <block type="display_getdisplayWidth"/>
