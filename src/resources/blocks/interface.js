@@ -75,13 +75,27 @@ function register() {
     }
 
     registerBlock(`${categoryPrefix}currentscreen`, {
-        message0: 'current screen name',
-        args0: [],
+        message0: 'current screen %1',
+        args0: [{
+            "type": "field_dropdown",
+            "name": "MENU",
+            "options": [
+                [ "name", "name" ],
+                [ "ID", "ID" ],
+            ]
+        }],
         output: "String",
         inputsInline: true,
         colour: categoryColor
     }, (block) => {
-        return [`ModAPI.currentScreen()`, javascriptGenerator.ORDER_ATOMIC];
+        const MENU = block.getFieldValue('MENU');
+        let code = "";
+        if (MENU === "ID") {
+            code = `ModAPI.currentScreen()`
+        } else if (MENU === "name") {
+            code = `ModAPI.currentScreen().substring(ModAPI.currentScreen().lastIndexOf(".")+1, ModAPI.currentScreen().lastIndexOf("@"))`
+        }
+        return [code, javascriptGenerator.ORDER_ATOMIC];
     })
 }
 

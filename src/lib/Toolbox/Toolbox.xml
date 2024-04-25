@@ -165,8 +165,6 @@
         <block type="player_motion"/>
         <block type="player_indimension"/>
         <sep gap="48"></sep>
-        <block type="player_username"/>
-        <sep gap="48"></sep>
         <block type="player_setpropertyboolean"/>
         <block type="player_getpropertyboolean"/>
         <block type="player_setpropertynumber"/>
