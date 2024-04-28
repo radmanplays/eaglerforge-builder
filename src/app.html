@@ -17,6 +17,7 @@
 			}
 			body {
 				color: black;
+				overflow-x: hidden;
 			}
 			body.dark {
 				color: white;
@@ -116,7 +117,7 @@
 			<p style="margin-block: 0;">EaglerForge Builder is currently in development, some project files may break due to code changing all the time.</p>
 			<button
 				style="margin: 0; margin-left: 8px; background: transparent; border: 0; outline: 0; padding: 0; cursor: pointer;"
-				onclick="document.getElementById('Zm5BSEgzQW5HeW9yZkFkNEhpbGJiamtpZmdoOGNDc2lMR29JSzF0K2JnPT0=').remove()"
+				onclick="closeAlert()"
 			>
 				<img width="24" height="24" src="/images/close.svg">
 			</button>
@@ -127,7 +128,7 @@
 
 			// if localhost, get rid of the alert
 			const isLocalHost = location.hostname === 'localhost';
-			if (isLocalHost) {
+			if (isLocalHost || localStorage.getItem('alert_closed')) {
 				const alert = document.getElementById('Zm5BSEgzQW5HeW9yZkFkNEhpbGJiamtpZmdoOGNDc2lMR29JSzF0K2JnPT0=');
 				alert.remove();
 			}
@@ -186,6 +187,14 @@
 					prismStyles[styleId] = styleCode;
 				}
 				styleElement.innerHTML = styleCode;
+				if (document.getElementById('docIframe')) {
+					const docIframe = document.getElementById('docIframe').contentWindow.document.body
+					if (mode === 'dark') {
+						docIframe.setAttribute("class", "dark");
+					} else {
+						docIframe.setAttribute("class", "light");
+					}
+				}
 			};
 
 		if (location.hash === "#fullscreen"){
@@ -201,6 +210,36 @@
 				}
 			};
 			updateTheme();
+
+			window.openDoc = function(blockID){
+				let docDiv = document.getElementById('documentation');
+				let iframe = document.createElement("iframe");
+				const mode = localStorage.getItem('tb:theme');
+        		iframe.setAttribute("src", `${window.location.origin}/help/blocks?block=${blockID}&theme=${mode}`);
+        		iframe.style.width = "100%";
+        		iframe.style.height = "100%";
+				iframe.style.border = "none";
+				iframe.id = "docIframe";
+				if (document.getElementById('docIframe')) {
+        			docDiv.replaceChild(iframe, document.getElementById('docIframe'));
+				} else {
+					docDiv.appendChild(iframe);
+				}
+				docDiv.setAttribute('opened', 'true');
+				document.getElementById('closeDocButton').setAttribute('opened', 'true');
+			}
+
+			window.closeDoc = function(){
+				let docDiv = document.getElementById('documentation');
+				document.createElement("iframe").remove();
+				document.getElementById('closeDocButton').setAttribute('opened', 'false');
+				docDiv.setAttribute('opened', 'false');
+			}
+
+			function closeAlert() {
+				document.getElementById('Zm5BSEgzQW5HeW9yZkFkNEhpbGJiamtpZmdoOGNDc2lMR29JSzF0K2JnPT0=').remove()
+				localStorage.setItem('alert_closed', 'true')
+			}
 		</script>
 		<div style="display: contents">%sveltekit.body%</div>
 		<script>document.getElementById('fullscreenButton').innerHTML = `<i class="fa fa-expand"></i>`;</script>

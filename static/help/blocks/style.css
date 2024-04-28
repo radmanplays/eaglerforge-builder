@@ -1,0 +1,33 @@
+body {
+    color: #111111;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 20px;
+}
+body.dark {
+    color: #f9f9f9;
+}
+
+section > h2,h1 {
+    text-align: center;
+}
+
+/* Blockly SVG blocks */
+block {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blocklyText {
+	fill: #ffffff;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.blocklySvg {
+    user-select: none;
+    width: auto;
+}
+

@@ -11,8 +11,8 @@
     import StopButton from "$lib/ControlBar/StopButton.svelte";
     import OpenButton from "$lib/ControlBar/OpenButton.svelte";
     import FullscreenButton from "$lib/ControlBar/FullscreenButton.svelte";
-    import EaglerCraft from "$lib/EaglerCraft/EaglerCraft.svelte"
-
+    import EaglerCraft from "$lib/EaglerCraft/EaglerCraft.svelte";
+    import Documentation from "$lib/Documentation/Documentation.svelte";
 
     // Modals
     import ExtensionColorsModal from "$lib/MenuModals/ExtensionColors.svelte";
@@ -74,6 +74,10 @@
     import registerDisplay from "../resources/blocks/display.js";
     import registerinterface from "../resources/blocks/interface.js";
     
+    Blockly.BlockSvg.prototype.showHelp_ = function ( ) {
+        alert('test')
+    };
+
     registerCore();
     registerControl();
     registerEvents();
@@ -553,6 +557,7 @@
                 <EaglerCraft>
                 </EaglerCraft>
             </div>
+            <Documentation/>
             <div class="row-subsubmenus">
                 <div class="codeActionsWrapper">
                     <p style="margin-right: 12px"><b>Mod Code</b></p>

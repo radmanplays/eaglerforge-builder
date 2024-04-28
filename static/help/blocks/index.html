@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="/help/blocks/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <section id="presentation">
+            <h1>Documentation</h1>
+            <p>Some blocks are documented here</p>
+        </section>
+        <section id="events_eachTicks">
+            <h2>Every ticks</h2>
+            <block>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="blocklySvg" tabindex="0" width="230px" height="130px"><g data-id="LSMY~Z^JVL-4H/1$GMo+" class="blocklyDraggable blocklySelected"><path class="blocklyPath" stroke="#bf8f00" fill="#ffbf00" d=" m 0,22  h 0  c 25,-22  71,-22  96,0  h 127.93333435058594 a 4 4 0 0,1 4,4  v 26  V 30  V 62  V 66 a 4 4 0 0,1 -4,4  H 64  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,0 -4,4  v 16 a 4 4 0 0,0 4,4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  H 223.93333435058594 a 4 4 0 0,1 4,4  V 102  V 122 a 4 4 0 0,1 -4,4  h -219.93333435058594 a 4 4 0 0,1 -4,-4 z"></path><g transform="translate(8,36.5)"><text class="blocklyText" dominant-baseline="central" x="0" y="9.5">every&nbsp;in&nbsp;game&nbsp;ticks&nbsp;do</text></g><path class="blocklyPath" stroke="#bf8f00" fill="none" d=" m 0,22  h 0  c 25,-22  71,-22  96,0  h 127.93333435058594 a 4 4 0 0,1 4,4  v 26  V 30  V 62  V 66 a 4 4 0 0,1 -4,4  H 64  c -2,0  -3,1  -4,2  l -4,4  c -1,1  -2,2  -4,2  h -12  c -2,0  -3,-1  -4,-2  l -4,-4  c -1,-1  -2,-2  -4,-2  h -8 a 4 4 0 0,0 -4,4  v 16 a 4 4 0 0,0 4,4  h 8  c 2,0  3,1  4,2  l 4,4  c 1,1  2,2  4,2  h 12  c 2,0  3,-1  4,-2  l 4,-4  c 1,-1  2,-2  4,-2  H 223.93333435058594 a 4 4 0 0,1 4,4  V 102  V 122 a 4 4 0 0,1 -4,4  h -219.93333435058594 a 4 4 0 0,1 -4,-4 z" filter="url(#blocklySelectedGlowFilter7769814457033053)"></path></g></svg>
+            </block>
+            <p>This block is called every in-game tick, which means that if the player is not currently in a world, the block will not be run.</p>
+        </section>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('block')) {
+                let allSections = Array.from(document.getElementsByTagName('section'));
+                allSections.forEach((element) => element.style.display = "none");
+                if (document.getElementById(urlParams.get('block'))) {
+                    document.getElementById(urlParams.get('block')).style.display = "block";
+                } else {
+                    document.getElementById('presentation').style.display = "block";
+                    document.getElementById('presentation').innerHTML = "<h1>Block not found</h1>";
+                }
+            }
+
+            if (urlParams.get('theme')) {
+                document.body.className = urlParams.get('theme');
+            }
+        </script>
+    </body>
+</html>
