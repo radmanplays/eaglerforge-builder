@@ -32,7 +32,7 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const MENU = block.getFieldValue('MENU');
-        return [`(ModAPI.player?ModAPI.player.${MENU}:"")`, javascriptGenerator.ORDER_ATOMIC];
+        return [`ModAPI.player.${MENU}`, javascriptGenerator.ORDER_ATOMIC];
     })
 
     registerBlock(`${categoryPrefix}motion`, {
@@ -53,7 +53,7 @@ function register() {
         colour: categoryColor
     }, (block) => {
         const MENU = block.getFieldValue('MENU');
-        return [`(ModAPI.player?ModAPI.player.motion${MENU}:"")`, javascriptGenerator.ORDER_ATOMIC];
+        return [`ModAPI.player.motion${MENU}`, javascriptGenerator.ORDER_ATOMIC];
     })
     
     registerBlock(`${categoryPrefix}indimension`, {
@@ -586,6 +586,17 @@ function register() {
         const BLOCKS = javascriptGenerator.statementToCode(block, 'BLOCKS');
         const code = `ModAPI.addEventListener("key", function(ev){
             if(ev.key == ${MENU3}){${BLOCKS}}});`;
+        return `${code}\n`;
+    })
+    registerBlock(`${categoryPrefix}reload`, {
+        message0: 'load new player values into game',
+        args0: [],
+        previousStatement: null,
+        nextStatement: null,
+        inputsInline: true,
+        colour: categoryColor
+    }, (block) => {
+        const code = `ModAPI.player.reload()`;
         return `${code}\n`;
     })
 }

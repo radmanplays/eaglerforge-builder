@@ -3,7 +3,8 @@
         <block type="events_modload" />
         <block type="events_load" />
         <sep gap="48"></sep>
-        <block type="events_whenkeypressed" />
+        <block type="events_whenkeydown" />
+        <block type="events_whenkeyup" />
         <sep gap="48"></sep>
         <block type="events_eachTicks" />
         <block type="events_frame" />
@@ -85,6 +86,7 @@
         <sep gap="48"></sep>
         <block type="operators_join" />
         <block type="operators_letter" />
+        <!--<block type="operators_addblock" />-->
     </category>
     <category name="Conversions" colour="#8BC059">
         <block type="conversions_tonumber" />
@@ -155,10 +157,12 @@
         <block type="debug_commentstack" />
         <sep gap="48"></sep>
         <block type="debug_catch" />
+        <block type="debug_sendtowebhook" />
     </category>
     <sep></sep>
     <category name="Player" colour="#5468ff">
         <block type="player_username"/>
+        <block type="player_reload"/>
         <block type="player_ingame"/>
         <sep gap="48"></sep>
         <block type="player_position"/>
