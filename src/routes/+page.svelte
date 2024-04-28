@@ -375,7 +375,7 @@
     };
 
     function discordInvite() {
-        window.open("https://discord.gg/UhYnFmbAzf")
+        window.open("https://discord.gg/KGstyUEQpR")
     }
 
     function github() {
