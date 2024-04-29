@@ -854,4 +854,8 @@
         fill: white;
         color: white;
     }
+
+    :global(.blocklyScrollbarBackground:hover + .blocklyScrollbarHandle, .blocklyScrollbarHandle:hover) {
+        fill: #575E75; /* fix strange scrollbar issue */
+    }
 </style>
