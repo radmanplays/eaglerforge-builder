@@ -61,8 +61,8 @@ function register() {
         return `${code}\n`;
     })
 
-    registerBlock(`${categoryPrefix}load`, {
-        message0: 'after every mod finishes loading do %1 %2',
+    registerBlock(`${categoryPrefix}allmodsload`, {
+        message0: 'when every mod finishes loading do %1 %2',
         args0: [
             {
                 "type": "input_dummy"
@@ -173,7 +173,7 @@ function register() {
     })
 
     registerBlock(`${categoryPrefix}whenkeydown`, {
-        message0: 'when %1 key is down %2 %3',
+        message0: 'when %1 key is down do %2 %3',
         args0: [
             {
                 "type": "field_dropdown",
@@ -199,7 +199,7 @@ function register() {
         return `${code}\n`;
     })
     registerBlock(`${categoryPrefix}whenkeyup`, {
-        message0: 'when %1 key is up %2 %3',
+        message0: 'when %1 key is up do %2 %3',
         args0: [
             {
                 "type": "field_dropdown",

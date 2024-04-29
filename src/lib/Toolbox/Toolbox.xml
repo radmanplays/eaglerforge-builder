@@ -1,21 +1,39 @@
 <xml>
     <category name="Events" colour="#FFBF00">
         <block type="events_modload" />
-        <block type="events_load" />
         <sep gap="48"></sep>
         <block type="events_whenkeydown" />
         <block type="events_whenkeyup" />
         <sep gap="48"></sep>
         <block type="events_eachTicks" />
         <block type="events_frame" />
-        <block type="events_interval" />
-        <block type="events_timeout" />
+        <block type="events_interval" >
+            <value name="TIME">
+                <block type="literals_number">
+                    <field name="NUMBER">1</field>
+                </block>
+            </value>
+        </block>
+        <block type="events_timeout" >
+            <value name="TIME">
+                <block type="literals_number">
+                    <field name="NUMBER">1</field>
+                </block>
+            </value>
+        </block>
         <sep gap="48"></sep>
         <block type="events_gui" />
         <block type="events_drawhud" />
+        <block type="events_allmodsload" />
     </category>
     <category name="Control" colour="#FFAB19">
-        <block type="control_wait" />
+        <block type="control_wait" >
+            <value name="MS">
+                <block type="literals_number">
+                    <field name="NUMBER">1000</field>
+                </block>
+            </value>
+        </block>
         <block type="control_waituntil" />
         <sep gap="48"></sep>
         <block type="control_repeat" />
@@ -157,6 +175,7 @@
         <block type="debug_commentstack" />
         <sep gap="48"></sep>
         <block type="debug_catch" />
+        <sep gap="48"></sep>
         <block type="debug_sendtowebhook" />
     </category>
     <sep></sep>
@@ -171,7 +190,13 @@
         <sep gap="48"></sep>
         <block type="player_setpropertyboolean"/>
         <block type="player_getpropertyboolean"/>
-        <block type="player_setpropertynumber"/>
+        <block type="player_setpropertynumber">
+            <value name="INPUT">
+                <block type="literals_number">
+                    <field name="NUMBER">10</field>
+                </block>
+            </value>
+        </block>
         <block type="player_getpropertynumber"/>
         <sep gap="48"></sep>
         <block type="player_sendchat">
