@@ -95,7 +95,7 @@
     registerDisplay();
     registerinterface();
 
-    const EaglerCraftVersion = "1.3";
+    const EaglerCraftVersion = "1.3.2";
 
     const en = {
         rtl: false,
